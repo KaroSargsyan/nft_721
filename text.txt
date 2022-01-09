@@ -1,0 +1,31 @@
+                        2) tokenneri qanak@
+                        3) qani token e reserv arvelu whitelist,javi
+                        7) qani admin e unenalu contract@ access control roles ownable
+                        12) price of token in whitelist in public 
+                        5) burnble pauible
+                        13) can two accounts have one nft token
+                        6) tokenner@ openseaum linelu en 
+                        9) account total supply 
+                        1) mint anum enq menq phantomi web situm
+                        11) airdrop logic 
+                        8) rank logic property (Sneakerhead)
+                        10) what is NFT Ring
+                        4) royalitin linelu e 
+
+
+1) contract access control will be by role(mechanism with a separate role for each privileged action. A role can have many authorized accounts if contract controled by role how many admins will have contract)  
+or ownable(single account authorized for all privileged actions) mechanism ?
+2) total nft's count and how many tokens will be reservd (whitelist,Javi) and price of them
+3) nft owner accounts logic has any limits or privilegions (*example total supply of account lower then 3), and airdrop logic (in article was written about free token)
+4) can multiply accounts have an nft token (fractional NFT)
+5) will contract have burnible and paueble functions  
+6) will be nfts stored in opensea?
+7) who's gona do mint tokens (we or user in our website)
+8) nft's rank(property) logic(and what is will be proportonal for example there are 10 nft the one is the super_rare, the two piece arerare and the others are standart...)  what proportonal should we divide them ?
+9) nft's secendary royality logic in contract (* and procent of royality)
+10) what is NFT Ring(i saw it in article)
+
+
+
+miacnel ipfs daemon
+brownie run scripts/create_metadata.py --network rinkeby
