@@ -8,6 +8,11 @@ import json
 import glob
 
 
+# // 172.18.0.3   
+# // root
+# // example
+# // sudo docker ps
+
 # create_collectible.main()
 
 @app.route('/')
@@ -22,7 +27,8 @@ def mint():
     with open("received_data.json",'w') as file:
         json.dump(content,file)
     
-   
+     
+
     os.system(f'brownie run scripts/create_metadata.py --network rinkeby')
     # sleep(5)
     os.system('brownie run scripts/create_collectible.py --network rinkeby')
@@ -37,7 +43,7 @@ def mint():
         data = json.load(f)
         print(data)
 
-    return 'data'
+    return data
 
 if __name__ == "__main__":
     app.run(debug=True)

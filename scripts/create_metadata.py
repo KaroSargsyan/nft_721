@@ -9,16 +9,15 @@ from .upload_to_pinata import uploadToPinata
 import sys
 import getopt
 
-args = (sys.argv)
-print(args)
+# args = (sys.argv)
+
+# print('Staaaaaaaaaaaaaaaaaaaaaaaaaaaart')
+# print(args)
+# print('Endddddddddddddddddddddddddddddddd')
 
 load_dotenv()
 metadatas={}
 id = 'phantom'
-
-def incrementId(a):
-    global id
-    id = a
 
 
 
@@ -39,8 +38,6 @@ def main():
     phantom_collectible = Phantom[len(Phantom) - 1]
     number_of_phantom_collectibles = phantom_collectible.tokenCounter()
     print("The number of tokens you've deployed is: "+ str(number_of_phantom_collectibles))
-    #increment id
-    # incrementId(number_of_phantom_collectibles + 1)
     write_metadata(number_of_phantom_collectibles)
     
 
