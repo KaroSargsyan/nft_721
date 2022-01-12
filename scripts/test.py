@@ -1,7 +1,5 @@
 import os
 from dotenv import load_dotenv, find_dotenv
-import dotenv
-import sys
 import sqlite3
 # from '../nft_demo' import test.db
 

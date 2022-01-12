@@ -87,7 +87,7 @@ def upload_to_ipfs(filepath,id, token_number):
 
         if image_uri.endswith('json'):
             metadatas[token_number]=f"{image_uri}"
-            with open("meta.json",'w') as file:
+            with open("metadata/meta.json",'w') as file:
                 json.dump(metadatas,file)
 
         return image_uri

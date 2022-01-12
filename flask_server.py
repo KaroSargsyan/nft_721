@@ -6,7 +6,6 @@ from flask import Flask, redirect, url_for,render_template, request
 import os
 from time import sleep
 import json
-import glob
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -74,7 +73,7 @@ def mint():
     # latest_file = max(list_of_files, key=os.path.getctime)
     # print(latest_file)
 
-    with open(f"./meta.json", 'r') as f:
+    with open(f"./metadata/meta.json", 'r') as f:
         data = json.load(f)
         print(data)
 

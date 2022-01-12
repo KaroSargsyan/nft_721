@@ -3,7 +3,7 @@ from scripts.helpful_scripts import OPENSEA_FORMAT
 import json
 
 
-metadatas=json.load(open("meta.json"))
+metadatas=json.load(open("metadata/meta.json"))
 
 def main():
     dev = accounts.add(config["wallets"]["from_key"])
