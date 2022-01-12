@@ -8,6 +8,19 @@ from dotenv import load_dotenv
 from .upload_to_pinata import uploadToPinata
 import sys
 import getopt
+import sqlite3
+
+conn = sqlite3.connect('../nft_demo/test.db')
+c = conn.cursor()
+
+print('**********************')
+aa = c.execute('SELECT * FROM Received_data WHERE ID = (SELECT MAX(ID)  FROM Received_data)')
+fetched_data = (aa.fetchall()[0][1])
+print(fetched_data)
+
+
+
+
 
 # args = (sys.argv)
 
@@ -33,7 +46,7 @@ id = 'phantom'
 
 def main():
 
-    print(id)
+    print(fetched_data)
     print("Working on " + network.show_active())
     phantom_collectible = Phantom[len(Phantom) - 1]
     number_of_phantom_collectibles = phantom_collectible.tokenCounter()
@@ -43,12 +56,11 @@ def main():
 
 
 def write_metadata(number_of_phantom_collectibles):        
-    with open("received_data.json", 'r') as f:
-        data = json.load(f)
-        print(data["description"])
-
+    # with open("received_data.json", 'r') as f:
+        data = json.loads(fetched_data)
+        print('--------------------------------------------------')
         print(data)
-
+        
         #image from URL
         f = open(f'./img/{id}.png','wb')
         response = requests.get(data["image"])
@@ -65,7 +77,6 @@ def write_metadata(number_of_phantom_collectibles):
             
         print("Creating Metadata file: " + metadata_file_name)
         collectible_metadata["name"] = data["name"]
-        collectible_metadata["description"] = data["description"]
         collectible_metadata["attributes"] =  data["attributes"]
     
         image_to_upload = None

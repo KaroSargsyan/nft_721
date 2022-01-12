@@ -2,22 +2,41 @@ import os
 from dotenv import load_dotenv, find_dotenv
 import dotenv
 import sys
+import sqlite3
+# from '../nft_demo' import test.db
+
+conn = sqlite3.connect('../nft_demo/test.db')
+c = conn.cursor()
+print('**********************')
+aa = c.execute('SELECT ID FROM Received_data')
+print(aa.fetchall())
+
+ee = c.execute('SELECT * FROM Received_data WHERE ID = (SELECT MAX(ID)  FROM Received_data)') #takes last item
+
+# tt = c.execute("UPDATE Received_data SET content = 'Pune' WHERE ID = 1")
+# conn.commit()
+
+c.execute('DELETE FROM Received_data')
+conn.commit()
+
+all = c.execute('SELECT * FROM Received_data')
+print('++++++++++++++++++++++++++++++++++++++++')
+print(all.fetchall())
+
 # print(os.environ['IPFS_URL'])
 
-print ('Number of arguments:', len(sys.argv), 'arguments.')
-print ('Argument List:', str(sys.argv))
+# print ('Number of arguments:', len(sys.argv), 'arguments.')
+# print ('Argument List:', str(sys.argv))
 
-args = (sys.argv)
+# args = (sys.argv)
 
+# def func(ar):
+#     return ar
 
+# nv = func(args)
+# print(nv[1])
 
-def func(ar):
-    return ar
-
-nv = func(args)
-print(nv[1])
-
-print(sys.path)
+# print(sys.path)
 
 
 # .env set a variable----------------------------------------------
