@@ -1,8 +1,6 @@
 from ast import dump
 from datetime import time
 from flask import Flask, redirect, url_for,render_template, request
-
-# from nft_demo.scripts import create_collectible
 import os
 from time import sleep
 import json
@@ -14,7 +12,7 @@ app = Flask(__name__)
 
 #Connect to DB
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///metadata/nft_data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app) 
@@ -27,7 +25,6 @@ class Received_data(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-#End DB
 
 
 @app.route('/')
@@ -36,11 +33,7 @@ def home():
 
 @app.route('/mint', methods = ['POST'])
 def mint():
-    # content = request.get_json()
-    # with open("received_data.json",'w') as file:
-    #     json.dump(content,file)
-
-#Adddddddded
+    
     task_content = request.get_json()
     task_content_string = json.dumps(task_content)
     print(task_content_string)
@@ -53,31 +46,17 @@ def mint():
 
     except:
         print('Error')
-
-    data_from_db = Received_data.query.get_or_404(1)
     
-#End of added
-
-    print('start..............create_metadata')
 
     os.system(f'brownie run scripts/create_metadata.py --network rinkeby')
 
-    print('start..............create_collectible')
-
-
     os.system('brownie run scripts/create_collectible.py --network rinkeby')
 
-    #choose file and return the content
-
-    # list_of_files = glob.glob('metadata/rinkeby/*') # * means all if need specific format then *.csv
-    # latest_file = max(list_of_files, key=os.path.getctime)
-    # print(latest_file)
+    
 
     with open(f"./metadata/meta.json", 'r') as f:
         data = json.load(f)
-        print(data)
 
-    print('Mint is done')
     return data
 
 if __name__ == "__main__":
