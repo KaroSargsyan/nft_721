@@ -6,8 +6,6 @@ from metadata import sample_metadata
 from pathlib import Path
 from dotenv import load_dotenv
 from .upload_to_pinata import uploadToPinata
-import sys
-import getopt
 import sqlite3
 
 conn = sqlite3.connect('../nft_demo/test.db')
@@ -20,27 +18,9 @@ print(fetched_data)
 
 
 
-
-
-# args = (sys.argv)
-
-# print('Staaaaaaaaaaaaaaaaaaaaaaaaaaaart')
-# print(args)
-# print('Endddddddddddddddddddddddddddddddd')
-
 load_dotenv()
 metadatas={}
 id = 'phantom'
-
-
-
-# args = (sys.argv)
-# received_data = args[5]
-# str = received_data.replace("\'", "\"")
-# data = json.loads(str)
-# print('Staaaaaaaaaaaaaaaaaaaaaaaaaaaart')
-# print(data['image'])
-# print('Endddddddddddddddddddddddddddddddd')
 
 
 
@@ -53,7 +33,6 @@ def main():
     print("The number of tokens you've deployed is: "+ str(number_of_phantom_collectibles))
     write_metadata(number_of_phantom_collectibles)
     
-
 
 def write_metadata(number_of_phantom_collectibles):        
     # with open("received_data.json", 'r') as f:
@@ -92,17 +71,6 @@ def write_metadata(number_of_phantom_collectibles):
 
 
 def upload_to_ipfs(filepath,id, token_number):
-    with Path(filepath).open("rb") as fp:
-        image_binary = fp.read()
-        ipfs_url = (
-            os.getenv("IPFS_URL")
-            if os.getenv("IPFS_URL")
-            else "http://localhost:5001"
-        )
-
-        #Here should be Pinata code
-         #1. It should take the picture and send it to Pinata server
-          #2. Response should be returned and be put to IPFS link
 
         pinata_hash = uploadToPinata(filepath)
         print(pinata_hash)
@@ -121,4 +89,5 @@ def upload_to_ipfs(filepath,id, token_number):
             metadatas[token_number]=f"{image_uri}"
             with open("meta.json",'w') as file:
                 json.dump(metadatas,file)
-    return image_uri
+
+        return image_uri

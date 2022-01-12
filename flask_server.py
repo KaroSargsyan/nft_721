@@ -11,14 +11,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 
-# // 172.18.0.3   
-# // root
-# // example
-# // sudo docker ps
-
-# create_collectible.main()
-
-
 app = Flask(__name__)
 
 #Connect to DB
@@ -82,12 +74,12 @@ def mint():
     # latest_file = max(list_of_files, key=os.path.getctime)
     # print(latest_file)
 
-    # with open(f"{latest_file}", 'rb') as f:
-    #     data = json.load(f)
-    #     print(data)
+    with open(f"./meta.json", 'r') as f:
+        data = json.load(f)
+        print(data)
 
-    print('Mint is dooooooooooooooooooooooooooooooone')
-    return '??????/'
+    print('Mint is done')
+    return data
 
 if __name__ == "__main__":
     db.create_all()

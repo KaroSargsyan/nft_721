@@ -67,3 +67,12 @@ print(all.fetchall())
 # export PINATA_API_SECRET=8b3003d5ff4e7e188121d56f999dbecffa1c6621a7e4381e186398d3eb2ce625
 
 # #export PRIVATE_KEY=8b42f7d608ce70b802454e3a2d0baa104a05f2b315a30d162f36b6f0a96f6929
+
+
+
+#server
+# // 172.18.0.3   
+# // root
+# // example
+# // sudo docker ps
+# create_collectible.main()
